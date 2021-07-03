@@ -62,8 +62,6 @@ class __TaskFormState extends State<_TaskForm> {
       isToggle = !isToggle;
       task.complete = isToggle;
       FirebaseManager.fireBaseProvider(context).updateTask(task, context);
-      // futureTask =
-      //     FirebaseManager.fireBaseProvider(context).taskManager(context);
     });
   }
 
@@ -75,7 +73,6 @@ class __TaskFormState extends State<_TaskForm> {
 
   void _save(BuildContext context, Task task) {
     //TODO implement save to firestore
-
     task.title = _titleController.text;
     task.description = _descriptionController.text;
     task.docId = widget.docId;
@@ -95,7 +92,6 @@ class __TaskFormState extends State<_TaskForm> {
             builder: (context) => IndexPage(
                   index: 1,
                 )));
-    // Navigator.of(context).pop();
   }
 
   @override
