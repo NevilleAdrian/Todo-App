@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:morphosis_flutter_demo/non_ui/repo/firebase_manager.dart';
+import 'package:morphosis_flutter_demo/non_ui/providers/auth_provider.dart';
 import 'package:morphosis_flutter_demo/ui/screens/home.dart';
 import 'package:morphosis_flutter_demo/ui/screens/tasks.dart';
 
 class IndexPage extends StatefulWidget {
+  final int index;
+  const IndexPage({this.index});
   @override
   _IndexPageState createState() => _IndexPageState();
 }
 
 class _IndexPageState extends State<IndexPage> {
-  int _currentIndex = 0;
+  //Initialize Page controller
+  PageController _pageController;
+  int _currentIndex;
 
-  void onTabTapped(int index) {
+  void _onPageChanged(int index) {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  void _onTapped(int selectedIndex) {
+    _pageController.jumpToPage(selectedIndex);
+  }
+
+  @override
+  void initState() {
+    _pageController = PageController(
+      initialPage: widget.index ?? 0,
+    );
+    _currentIndex = widget.index ?? 0;
+    Auth.authProvider(context).setPageController(_pageController);
+
+    super.initState();
   }
 
   @override
@@ -23,19 +42,19 @@ class _IndexPageState extends State<IndexPage> {
       HomePage(),
       TasksPage(
         title: 'All Tasks',
-        tasks: FirebaseManager.shared.tasks,
       ),
-      TasksPage(
-        title: 'Completed Tasks',
-        tasks:
-            FirebaseManager.shared.tasks.where((t) => t.isCompleted).toList(),
-      )
+      TasksPage(title: 'Completed Tasks'),
     ];
 
     return Scaffold(
-      body: children[_currentIndex],
+      body: PageView(
+        children: children,
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        physics: NeverScrollableScrollPhysics(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
+        onTap: _onTapped,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(

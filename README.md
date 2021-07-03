@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Todo-App
-New
-=======
 # Assignment for Flutter Developers
 
 Goal of the assignment is to:
@@ -64,4 +60,3 @@ Upload the code on your github and send us a link :
 3. Error handling should be implemented properly. 
 
 Thank you.
->>>>>>> a7fe57237ed789f74b93005c483c6b4ae0f7f678
