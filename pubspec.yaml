@@ -45,6 +45,7 @@ dev_dependencies:
   test: any
   build_runner: ^2.0.1
   hive_generator: ^1.1.0
+  image_test_utils: ^1.0.0
 
 
 

@@ -54,21 +54,15 @@ class _IndexPageState extends State<IndexPage> {
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        key: Key('main'),
         onTap: _onTapped,
         currentIndex: _currentIndex,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.list), title: Text('All Tasks')),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'All Tasks',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check),
-            label: 'Completed Tasks',
-          ),
+              icon: Icon(Icons.check), title: Text('Completed Tasks')),
         ],
       ),
     );

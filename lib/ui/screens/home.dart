@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
             */
 
             CupertinoSearchTextField(
+              key: Key('searchKey'),
               controller: _searchTextField,
             ),
             SizedBox(
